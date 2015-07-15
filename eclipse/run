@@ -1,0 +1,1 @@
+docker run --name eclipse --link pg94:pg -e DISPLAY=unix$DISPLAY -p 8090:8090 -v=/tmp/.X11-unix:/tmp/.X11-unix:rw -v ~/Odoo:/home/Odoo -d trustcode/eclipse /opt/eclipse/eclipse
