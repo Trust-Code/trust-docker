@@ -1,4 +1,4 @@
-FROM trust-odoo-base
+FROM trustcode/odoo-base
 
 MAINTAINER	Mackilem Van der Laan <comercial@trustcode.com.br> \
 		Danimar Ribeiro <desenvolvimento@trustcode.com.br>
