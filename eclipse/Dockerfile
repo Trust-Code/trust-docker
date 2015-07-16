@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y python-pip xvfb
 RUN Xvfb :1 -screen 0 1024x768x16 &> xvfb.log  &
 
 RUN pip install selenium && python
-ADD eclipse.c3sl.ufpr.br/technology/epp/downloads/release/mars/R/eclipse-jee-mars-R-linux-gtk-x86_64.tar.gz /opt/
+ADD http://eclipse.c3sl.ufpr.br/technology/epp/downloads/release/mars/R/eclipse-jee-mars-R-linux-gtk-x86_64.tar.gz /opt/
 RUN apt-get install -y openjdk-7-jre
 
 RUN useradd -d /home/developer/ -s /bin/bash developer && \
