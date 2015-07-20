@@ -26,13 +26,16 @@ ADD conf/supervisord.conf /etc/supervisor/supervisord.conf
 
 RUN mkdir /var/log/odoo && \
     mkdir /opt/dados && \
+    mkdir /opt/xml && \
+    mkdir /opt/xml/imp && \
+    mkdir /opt/xml/exp && \
+    mkdir /opt/xml/bkp && \
     touch /var/log/odoo/odoo.log && \
     touch /var/run/odoo.pid && \
     ln -s /opt/odoo/OCB/openerp-server /usr/bin/odoo-server && \
     useradd --system --home /opt --shell /bin/bash odoo && \
-    chown -R odoo:odoo /opt/odoo && \
+    chown -R odoo:odoo /opt && \
     chown -R odoo:odoo /etc/odoo/odoo.conf && \
-    chown -R odoo:odoo /opt/dados && \
     chown -R odoo:odoo /var/log/odoo && \
     chown odoo:odoo /var/run/odoo.pid
 
