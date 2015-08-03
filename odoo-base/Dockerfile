@@ -16,4 +16,11 @@ RUN pip install -r pip-requirements && \
     dpkg -i wkhtmltox.deb && \
     locale-gen en_US en_US.UTF-8 pt_BR.UTF-8 && \
     dpkg-reconfigure locales
+
+	##### Instala pgAdmin3-1.20 #####
     
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
+    apt-get install wget ca-certificates && \
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
+RUN sudo apt-get update && apt-get install pgadmin3 -y
