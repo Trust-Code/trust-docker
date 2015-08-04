@@ -20,7 +20,7 @@ RUN pip install -r pip-requirements && \
 	##### Instala pgAdmin3-1.20 #####
 ADD https://www.postgresql.org/media/keys/ACCC4CF8.asc .
 
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
     apt-get install ca-certificates -y && \
     apt-key add ACCC4CF8.asc
 
