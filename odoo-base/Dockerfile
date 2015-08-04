@@ -19,4 +19,4 @@ RUN pip install -r pip-requirements && \
 
 	##### Instala Postgresql-client #####
 
-RUN sudo apt-get update && apt-get install postgresql-client-9.4 -y
+RUN apt-get update && apt-get install postgresql-client-9.4 -y
