@@ -17,11 +17,6 @@ RUN pip install -r pip-requirements && \
     locale-gen en_US en_US.UTF-8 pt_BR.UTF-8 && \
     dpkg-reconfigure locales
 
-	##### Instala pgAdmin3-1.20 #####
-ADD https://www.postgresql.org/media/keys/ACCC4CF8.asc .
+	##### Instala Postgresql-client #####
 
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
-    apt-get install ca-certificates -y && \
-    apt-key add ACCC4CF8.asc
-
-RUN sudo apt-get update && apt-get install pgadmin3 -y
+RUN sudo apt-get update && apt-get install postgresql-client-9.4 -y
