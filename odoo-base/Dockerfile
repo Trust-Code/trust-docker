@@ -1,4 +1,4 @@
-FROM ubuntu:utopic
+FROM ubuntu:trusty
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -18,5 +18,9 @@ RUN pip install -r pip-requirements && \
     dpkg-reconfigure locales
 
 	##### Instala Postgresql-client #####
+
+ADD https://www.postgresql.org/media/keys/ACCC4CF8.asc ./chave.asc
+RUN apt-key add chave.asc
+RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main' 9.4 > /etc/apt/sources.list.d/pgdg.list
 
 RUN apt-get update && apt-get install postgresql-client-9.4 -y
