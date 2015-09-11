@@ -9,3 +9,4 @@ RUN mkdir sites-enabled
 ADD conf/nginx.conf /etc/nginx/
 RUN rm /etc/nginx/conf.d/default.conf
 
+CMD ["nginx", "-g", "daemon off;"]
