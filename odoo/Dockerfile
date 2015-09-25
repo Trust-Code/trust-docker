@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 	##### Repositórios TrustCode e OCB #####
 
-RUN apt-get update && apt-get install -y nginx supervisor git
+RUN apt-get update && apt-get install -y supervisor git
 WORKDIR /opt/odoo/
 RUN git clone --depth=1 http://github.com/OCA/OCB.git OCB
 RUN git clone --depth=1 http://github.com/Trust-Code/odoo-brazil-eletronic-documents.git eletronic-docs
@@ -21,7 +21,6 @@ WORKDIR /opt
 	##### Configurações Odoo #####
 
 ADD conf/odoo.conf /etc/odoo/
-ADD conf/nginx.conf /etc/nginx/
 ADD conf/supervisord.conf /etc/supervisor/supervisord.conf
 
 RUN mkdir /var/log/odoo && \
