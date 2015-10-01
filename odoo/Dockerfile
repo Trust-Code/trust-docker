@@ -1,7 +1,6 @@
 FROM trustcode/odoo-base
 
-MAINTAINER	Mackilem Van der Laan <comercial@trustcode.com.br> \
-		Danimar Ribeiro <desenvolvimento@trustcode.com.br>
+MAINTAINER	Mackilem Van der Laan <comercial@trustcode.com.br> Danimar Ribeiro <desenvolvimento@trustcode.com.br>
 
 ENV DEBIAN_FRONTEND noninteractive
 
