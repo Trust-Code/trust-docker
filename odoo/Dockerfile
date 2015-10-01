@@ -15,8 +15,8 @@ RUN git clone --depth=1 http://github.com/Trust-Code/l10n-brazil.git l10n-brazil
 RUN git clone --depth=1 http://github.com/Trust-Code/account-fiscal-rule.git fiscal-rule
 RUN git clone --depth=1 http://github.com/Trust-Code/trust-addons.git trust-addons
 RUN git clone --depth=1 http://github.com/Trust-Code/server-tools.git server-tools
+RUN git clone --depth=1 https://github.com/Trust-Code/PySPED.git pysped
 RUN mkdir private
-WORKDIR /opt
 
 	##### Configurações Odoo #####
 
@@ -38,6 +38,13 @@ RUN mkdir /var/log/odoo && \
     chown -R odoo:odoo /var/log/odoo && \
     chown odoo:odoo /var/run/odoo.pid
 
+	##### Instalação do PySPED #####
+
+RUN mkdir /tmp/.python-eggs && chown -R odoo /tmp/.python-eggs
+ENV PYTHON_EGG_CACHE /tmp/.python-eggs
+WORKDIR /opt/odoo/pysped
+RUN python setup.py install
+
 	##### Limpeza da Instalação #####
 
 RUN apt-get --purge remove -y python-pip git && \
@@ -48,5 +55,5 @@ RUN apt-get --purge remove -y python-pip git && \
 
 	##### Finalização do Container #####
 
-VOLUME ["/opt/", "/etc/odoo", "/var/log/odoo"]
+VOLUME ["/opt/", "/etc/odoo"]
 CMD ["/usr/bin/supervisord"]

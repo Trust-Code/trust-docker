@@ -9,16 +9,21 @@ RUN apt-get update && apt-get install -y python-pip xvfb
 RUN Xvfb :1 -screen 0 1024x768x16 &> xvfb.log  &
 
 RUN pip install selenium && python
-ADD http://eclipse.c3sl.ufpr.br/technology/epp/downloads/release/mars/R/eclipse-jee-mars-R-linux-gtk-x86_64.tar.gz /opt/eclipse
 RUN apt-get install -y openjdk-7-jre
+ADD eclipse* /opt/
 
-RUN useradd -d /home/developer/ -s /bin/bash developer && \
+RUN     useradd -d /home/developer/ -s /bin/bash developer && \
 	mkdir /home/developer/ && \
 	mkdir /home/developer/.eclipse
 
-RUN chown -R developer:developer /opt/eclipse && \
-	mkdir /home/Odoo && \
+RUN     mkdir /home/Odoo && \
+	chown -R developer:developer /opt/eclipse && \
 	chown -R developer:developer /home && \
-	chown -R 775 /opt/eclipse
+	chmod -R 775 /opt/eclipse
+
+	##### Instalação do PySPED #####
+
+RUN mkdir /tmp/.python-eggs && chown -R developer /tmp/.python-eggs
+ENV PYTHON_EGG_CACHE /tmp/.python-eggs
 
 USER developer
