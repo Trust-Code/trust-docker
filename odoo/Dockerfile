@@ -15,6 +15,7 @@ RUN git clone --depth=1 http://github.com/Trust-Code/account-fiscal-rule.git fis
 RUN git clone --depth=1 http://github.com/Trust-Code/trust-addons.git trust-addons
 RUN git clone --depth=1 http://github.com/Trust-Code/server-tools.git server-tools
 RUN git clone --depth=1 http://github.com/OCA/bank-payment.git bank-payment
+RUN git clone --depth=1 https://github.com/OCA/bank-statement-import.git bank-statement-import
 RUN git clone --depth=1 https://github.com/Trust-Code/PySPED.git pysped
 RUN mkdir private
 
