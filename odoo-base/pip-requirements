@@ -3,7 +3,9 @@ psycogreen==1.0
 pyusb==1.0.0b1
 qrcode==5.0.1
 boto==2.38.0
+suds==0.4
+suds_requests==0.3
 odoorpc
 ofxparse
 https://github.com/aricaldeira/geraldo/archive/master.zip
-https://github.com/aricaldeira/pyxmlsec/archive/master.zip
+https://github.com/odoo-brazil/pyxmlsec/archive/master.zip
