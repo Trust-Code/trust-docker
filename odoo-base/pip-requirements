@@ -7,5 +7,5 @@ suds==0.4
 suds_requests==0.3
 odoorpc
 ofxparse
-https://github.com/aricaldeira/pyxmlsec/archive/master.zip
 https://github.com/aricaldeira/geraldo/archive/master.zip
+https://github.com/aricaldeira/pyxmlsec/archive/master.zip
