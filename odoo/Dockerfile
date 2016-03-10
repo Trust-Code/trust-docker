@@ -19,6 +19,7 @@ RUN git clone -b 8.0 --depth=1 https://github.com/OCA/bank-statement-import.git 
 RUN git clone -b 8.0 --depth=1 https://github.com/Trust-Code/PySPED.git pysped
 RUN git clone -b master --depth=1 https://github.com/Trust-Code/odoo-project_scrum.git project-scrum
 RUN git clone -b 8.0 --depth=1 https://github.com/Trust-Code/project.git project
+RUN git clone -b 8.0 --depth=1 https://github.com/Trust-Code/odoo-brazil-banking.git odoo-brazil-banking
 RUN mkdir private
 
 	##### Configurações Odoo #####
