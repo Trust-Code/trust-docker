@@ -16,6 +16,7 @@ RUN git clone -b 8.0 --depth=1 http://github.com/Trust-Code/trust-addons.git tru
 RUN git clone -b 8.0 --depth=1 http://github.com/Trust-Code/server-tools.git server-tools
 RUN git clone -b 8.0 --depth=1 http://github.com/OCA/bank-payment.git bank-payment
 RUN git clone -b 8.0 --depth=1 https://github.com/OCA/bank-statement-import.git bank-statement-import
+RUN git clone -b 8.0 --depth=1 https://github.com/Trust-Code/odoo-brazil-banking.git odoo-brazil-banking
 RUN git clone -b 8.0 --depth=1 https://github.com/Trust-Code/PySPED.git pysped
 RUN mkdir private
 
