@@ -12,6 +12,10 @@ WORKDIR /opt/sources/
 RUN apt-get update && apt-get install -y python-dev locales
 RUN apt-get install -y --no-install-recommends $(grep -v '^#' apt-requirements)
 
+RUN apt-get install -y npm &&
+    ln -s /usr/bin/nodejs /usr/bin/node &&
+    npm install -g less less-plugin-clean-css
+
 RUN pip install -r pip-requirements && \
     dpkg -i wkhtmltox.deb && \
     locale-gen en_US en_US.UTF-8 pt_BR.UTF-8 && \
