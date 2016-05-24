@@ -45,13 +45,13 @@ RUN mkdir -p /run/postgres && \
 
 RUN apt-get update && apt-get install -y supervisor git
 WORKDIR /opt/odoo/
-RUN git clone -b 8.0 --depth=1 http://github.com/OCA/OCB.git OCB
-RUN git clone -b 8.0 --depth=1 http://github.com/Trust-Code/odoo-brazil-eletronic-documents.git eletronic-docs
-RUN git clone -b 8.0 --depth=1 http://github.com/Trust-Code/l10n-brazil.git l10n-brazil
-RUN git clone -b 8.0 --depth=1 http://github.com/Trust-Code/account-fiscal-rule.git fiscal-rule
-RUN git clone -b 8.0 --depth=1 http://github.com/Trust-Code/trust-addons.git trust-addons
-RUN git clone -b 8.0 --depth=1 http://github.com/Trust-Code/server-tools.git server-tools
-RUN git clone --depth=1 https://github.com/Trust-Code/PySPED.git pysped
+RUN git clone -b 8.0 http://github.com/OCA/OCB.git OCB
+RUN git clone -b 8.0 http://github.com/Trust-Code/odoo-brazil-eletronic-documents.git eletronic-docs
+RUN git clone -b 8.0 http://github.com/Trust-Code/l10n-brazil.git l10n-brazil
+RUN git clone -b 8.0 http://github.com/Trust-Code/account-fiscal-rule.git fiscal-rule
+RUN git clone -b 8.0 http://github.com/Trust-Code/trust-addons.git trust-addons
+RUN git clone -b 8.0 http://github.com/Trust-Code/server-tools.git server-tools
+RUN git clone https://github.com/Trust-Code/PySPED.git pysped
 RUN mkdir private
 
 
