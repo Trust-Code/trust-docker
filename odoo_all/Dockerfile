@@ -51,6 +51,13 @@ RUN git clone -b 8.0 http://github.com/Trust-Code/l10n-brazil.git l10n-brazil
 RUN git clone -b 8.0 http://github.com/Trust-Code/account-fiscal-rule.git fiscal-rule
 RUN git clone -b 8.0 http://github.com/Trust-Code/trust-addons.git trust-addons
 RUN git clone -b 8.0 http://github.com/Trust-Code/server-tools.git server-tools
+RUN git clone -b 8.0 https://github.com/Trust-Code/account-payment.git
+RUN git clone -b 8.0 http://github.com/OCA/bank-payment.git 
+RUN git clone -b 8.0 http://github.com/OCA/sale-workflow.git
+RUN git clone -b 8.0 https://github.com/Trust-Code/account-invoicing.git
+RUN git clone -b 8.0 https://github.com/OCA/bank-statement-import.git
+RUN git clone -b 8.0 https://github.com/Trust-Code/odoo-brazil-banking.git
+
 RUN git clone https://github.com/Trust-Code/PySPED.git pysped
 RUN mkdir private
 
