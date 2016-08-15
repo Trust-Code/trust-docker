@@ -1,24 +1,49 @@
-FROM trustcode/odoo-base
-
-MAINTAINER	Mackilem Van der Laan <comercial@trustcode.com.br> Danimar Ribeiro <desenvolvimento@trustcode.com.br>
+FROM ubuntu:16.04
 
 ENV DEBIAN_FRONTEND noninteractive
+ENV TERM=xterm
+# Avoid ERROR: invoke-rc.d: policy-rc.d denied execution of start.
+RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
+
+	##### Dependências #####
+
+ADD conf/apt-requirements /opt/sources/
+ADD conf/pip-requirements /opt/sources/
+ADD http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb /opt/sources/wkhtmltox.deb
+
+WORKDIR /opt/sources/
+RUN apt-get update && apt-get install -y nano python-dev python-pip locales
+RUN pip install --upgrade pip
+RUN apt-get install -y --no-install-recommends $(grep -v '^#' apt-requirements)
+
+RUN pip install -r pip-requirements && \
+    dpkg -i wkhtmltox.deb && \
+    locale-gen en_US en_US.UTF-8 pt_BR.UTF-8 && \
+    dpkg-reconfigure locales
 
 	##### Repositórios TrustCode e OCB #####
 
 RUN apt-get update && apt-get install -y supervisor git
 WORKDIR /opt/odoo/
-RUN git clone -b 8.0 --depth=1 http://github.com/OCA/OCB.git OCB
-RUN git clone -b 8.0 --depth=1 http://github.com/Trust-Code/odoo-brazil-eletronic-documents.git eletronic-docs
-RUN git clone -b 8.0 --depth=1 http://github.com/Trust-Code/l10n-brazil.git l10n-brazil
-RUN git clone -b 8.0 --depth=1 http://github.com/Trust-Code/account-fiscal-rule.git fiscal-rule
-RUN git clone -b 8.0 --depth=1 http://github.com/Trust-Code/trust-addons.git trust-addons
-RUN git clone -b 8.0 --depth=1 http://github.com/Trust-Code/server-tools.git server-tools
-RUN git clone -b 8.0 --depth=1 http://github.com/OCA/bank-payment.git bank-payment
-RUN git clone -b 8.0 --depth=1 https://github.com/OCA/bank-statement-import.git bank-statement-import
-RUN git clone -b 8.0 --depth=1 https://github.com/Trust-Code/odoo-brazil-banking.git odoo-brazil-banking
-RUN git clone -b 8.0 --depth=1 https://github.com/Trust-Code/PySPED.git pysped
+RUN git clone -b 8.0 http://github.com/OCA/OCB.git OCB
+RUN git clone -b 8.0 http://github.com/Trust-Code/odoo-brazil-eletronic-documents.git eletronic-docs
+RUN git clone -b 8.0 http://github.com/Trust-Code/l10n-brazil.git l10n-brazil
+RUN git clone -b 8.0 http://github.com/Trust-Code/account-fiscal-rule.git fiscal-rule
+RUN git clone -b 8.0 http://github.com/Trust-Code/trust-addons.git trust-addons
+RUN git clone -b 8.0 http://github.com/Trust-Code/server-tools.git server-tools
+RUN git clone -b 8.0 https://github.com/Trust-Code/account-payment.git
+RUN git clone -b 8.0 https://github.com/Trust-Code/account-invoicing.git
+RUN git clone -b 8.0 http://github.com/OCA/sale-workflow.git
+RUN git clone -b 8.0 https://github.com/OCA/bank-statement-import.git
+RUN git clone -b 8.0 https://github.com/Trust-Code/odoo-brazil-banking.git
+RUN git clone -b 8.0 https://github.com/OCA/bank-statement-reconcile.git
+RUN git clone -b 8.0 http://github.com/OCA/bank-payment.git
+
+RUN git clone https://github.com/Trust-Code/PySPED.git pysped
+RUN git clone https://github.com/Trust-Code/PyCNAB.git pycnab
+RUN git clone https://github.com/Trust-Code/pyboleto.git
 RUN mkdir private
+
 
 	##### Configurações Odoo #####
 
@@ -34,6 +59,8 @@ RUN mkdir /var/log/odoo && \
     touch /var/log/odoo/odoo.log && \
     touch /var/run/odoo.pid && \
     ln -s /opt/odoo/OCB/openerp-server /usr/bin/odoo-server && \
+    ln -s /etc/odoo/odoo.conf && \
+    ln -s /var/log/odoo/odoo.log && \
     useradd --system --home /opt --shell /bin/bash odoo && \
     chown -R odoo:odoo /opt && \
     chown -R odoo:odoo /etc/odoo/odoo.conf && \
@@ -47,15 +74,24 @@ ENV PYTHON_EGG_CACHE /tmp/.python-eggs
 WORKDIR /opt/odoo/pysped
 RUN python setup.py install
 
+	##### Instalação do PyCNAB #####
+
+WORKDIR /opt/odoo/pycnab
+RUN python setup.py install
+
+	##### Instalação do Pyboleto #####
+
+WORKDIR /opt/odoo/pyboleto
+RUN python setup.py install
+
 	##### Limpeza da Instalação #####
 
-RUN apt-get --purge remove -y python-pip git && \
-    apt-get autoremove -y && \
-    apt-get autoclean && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /opt/sources/
+RUN apt-get autoremove -y && \
+    apt-get autoclean
 
 	##### Finalização do Container #####
+
+WORKDIR /opt/odoo
 
 VOLUME ["/opt/", "/etc/odoo"]
 CMD ["/usr/bin/supervisord"]
