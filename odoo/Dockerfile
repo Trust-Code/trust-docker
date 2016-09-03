@@ -15,6 +15,7 @@ WORKDIR /opt/sources/
 RUN apt-get update && apt-get install -y nano python-dev python-pip locales
 RUN pip install --upgrade pip
 RUN apt-get install -y --no-install-recommends $(grep -v '^#' apt-requirements)
+RUN npm install -g less less-plugin-clean-css
 
 RUN pip install -r pip-requirements && \
     dpkg -i wkhtmltox.deb && \
