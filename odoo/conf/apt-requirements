@@ -48,6 +48,7 @@ python-pil
 python-oerplib
 unixodbc
 python-pyodbc
+npm
 
 ##### Dependências da Localização Brasileira #####
 python-openssl
