@@ -60,6 +60,7 @@ RUN mkdir /var/log/odoo && \
     mkdir /opt/xml/imp && \
     mkdir /opt/xml/exp && \
     mkdir /opt/xml/bkp && \
+    mkdir /var/log/supervisord && \
     touch /var/log/odoo/odoo.log && \
     touch /var/run/odoo.pid && \
     ln -s /opt/odoo/OCB/openerp-server /usr/bin/odoo-server && \
