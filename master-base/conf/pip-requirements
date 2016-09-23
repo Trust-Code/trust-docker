@@ -1,0 +1,13 @@
+pyserial==2.7
+openpyxl==2.4.0-b1
+psycogreen==1.0
+pyusb==1.0.0b1
+qrcode==5.0.1
+unidecode==0.04.19
+boto==2.38.0
+odoorpc
+suds
+suds_requests
+http://labs.libre-entreprise.org/frs/download.php/897/pyxmlsec-0.3.1.tar.gz
+#https://github.com/aricaldeira/pyxmlsec/archive/master.zip
+https://github.com/aricaldeira/geraldo/archive/master.zip
