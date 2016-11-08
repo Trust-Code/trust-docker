@@ -42,6 +42,7 @@ RUN git clone -b 8.0 https://github.com/OCA/bank-statement-reconcile.git
 RUN git clone -b 8.0 http://github.com/OCA/bank-payment.git
 RUN git clone -b 8.0 https://github.com/OCA/web.git
 RUN git clone -b 8.0 https://github.com/OCA/project.git
+RUN git clone -b master https://github.com/Trust-Code/odoo-project_scrum.git scrum
 
 RUN git clone https://github.com/Trust-Code/PySPED.git pysped
 RUN git clone https://github.com/Trust-Code/PyCNAB.git pycnab
