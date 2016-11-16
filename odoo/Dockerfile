@@ -9,7 +9,6 @@ RUN pip install --no-cache-dir pytrustnfe python-cnab python-boleto
 
 WORKDIR /opt/odoo
 RUN chown -R odoo:odoo /opt
-RUN mkdir /var/log/supervisord
 RUN apt-get clean
     
 USER odoo
